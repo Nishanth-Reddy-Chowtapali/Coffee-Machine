@@ -1,0 +1,35 @@
+package machine;
+import java.util.Scanner;
+
+public class CoffeeMachine {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Write how many ml of water the coffee machine has:");
+        int input_Water = scanner.nextInt();
+        System.out.println("Write how many ml of milk the coffee machine has:");
+        int input_Milk = scanner.nextInt();
+        System.out.println("Write how many grams of coffee beans the coffee machine has:");
+        int input_Beans = scanner.nextInt();
+        System.out.println("Write how many cups of coffee you will need:");
+        int input_Coffee = scanner.nextInt();
+        int water_needed = input_Water % 200;
+        int milk_needed = input_Milk % 50;
+        int beans_needed = input_Beans % 15;
+        if (water_needed < milk_needed && water_needed < beans_needed){
+            int temp1 = water_needed;
+        } else if (milk_needed < water_needed && milk_needed < beans_needed) {
+            int temp1 = milk_needed;
+        } else if ( beans_needed < water_needed && beans_needed < milk_needed) {
+            int temp1 = beans_needed;
+        } else {
+           int temp1 = 1;
+        }
+        if (input_Water >= input_Coffee * 200 && input_Milk >= input_Coffee * 50 && input_Beans >= input_Coffee * 15) {
+            System.out.println("Yes, I can make that amount of coffee");
+        } else {
+            System.out.print("No, I can make only ");
+            System.out.print(temp1);
+            System.out.print("cup(s) of coffee");
+        }
+    } 
+}
