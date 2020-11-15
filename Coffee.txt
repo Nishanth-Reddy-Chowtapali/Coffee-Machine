@@ -2,24 +2,41 @@ package machine;
 import java.util.Scanner;
 public class CoffeeMachine {
     public static void main(String[] args) {
-      //  System.out.println("Starting to make a coffee\nGrinding coffee beans\nBoiling water\nMixing boiled water with crushed coffee beans\nPouring coffee into the cup\nPouring some milk into the cup\nCoffee is ready!");
-      Scanner s = new Scanner(System.in);
-      System.out.println("Write how many ml of water the coffee machine has: ");
-      int water = s.nextInt();
-      System.out.println("Write how many ml of milk the coffee machine has: ");
-      int milk = s.nextInt();
-      System.out.println("Write how many grams of coffee beans the coffee machine has: ");
-      int coffeeBeans = s.nextInt();
-      System.out.println("Write how many cups of coffee you will need: ");
-      int cups = s.nextInt();
-      int count = 0;
-      while (water >= 200 && milk >= 50 && coffeeBeans >= 15) {
-        count++;
-        water = water - 200;
-        milk = milk - 50;
-        coffeeBeans = coffeeBeans - 15;
-      }
-      int xtra = count - cups;
-      System.out.println(count == cups ? "Yes, I can make that amount of coffee " : count < cups ? "No, I can make only "+ count +" (s) of coffee":"Yes, I can make that amount of coffee (and even " + xtra +" more than that)");
+        int waterFor1Cup = 200;
+        int milkFor1Cup = 50;
+        int coffeeFor1Cup = 15;
+        int cupsAvailable;
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Write how many ml of water the coffee machine has:");
+        int waterAvailable = scanner.nextInt();
+        System.out.println("Write how many ml of milk the coffee machine has:");
+        int milkAvailable = scanner.nextInt();
+        System.out.println("Write how many ml of coffee beans the coffee machine has:");
+        int coffeeAvailable = scanner.nextInt();
+        System.out.println("Write how many cups of coffee you will need: ");
+        int cups = scanner.nextInt();
+
+        int waterPerCup = waterAvailable / waterFor1Cup;
+        int milkPerCup = milkAvailable / milkFor1Cup;
+        int coffeePerCup = coffeeAvailable / coffeeFor1Cup;
+        if (waterPerCup <= milkPerCup && waterPerCup <= coffeePerCup) {
+            cupsAvailable = waterPerCup;
+        }
+        else if (waterPerCup >= milkPerCup && milkPerCup <= coffeePerCup) {
+            cupsAvailable = milkPerCup;
+        }
+        else {
+            cupsAvailable = coffeePerCup;
+        }
+        if (cups == cupsAvailable) {
+            System.out.println("Yes, I can make that amount of coffee");
+        }
+        else if (cups < cupsAvailable) {
+            System.out.println("Yes, I can make that amount of coffee (and even " + (cupsAvailable - cups) + " more than that)");
+        }
+        else {
+            System.out.println("No, I can make only " + cupsAvailable +" cup(s) of coffee");
+        }
     }
 }
