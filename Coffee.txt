@@ -1,16 +1,25 @@
 package machine;
 import java.util.Scanner;
-
 public class CoffeeMachine {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Write how many ml of water the coffee machine has:");
-        int input_Water = scanner.nextInt();
-        System.out.println("Write how many ml of milk the coffee machine has:");
-        int input_Milk = scanner.nextInt();
-        System.out.println("Write how many grams of coffee beans the coffee machine has:");
-        int input_Beans = scanner.nextInt();
-        System.out.println("Write how many cups of coffee you will need:");
-        int input_Coffee = scanner.nextInt();
-    } 
+      //  System.out.println("Starting to make a coffee\nGrinding coffee beans\nBoiling water\nMixing boiled water with crushed coffee beans\nPouring coffee into the cup\nPouring some milk into the cup\nCoffee is ready!");
+      Scanner s = new Scanner(System.in);
+      System.out.println("Write how many ml of water the coffee machine has: ");
+      int water = s.nextInt();
+      System.out.println("Write how many ml of milk the coffee machine has: ");
+      int milk = s.nextInt();
+      System.out.println("Write how many grams of coffee beans the coffee machine has: ");
+      int coffeeBeans = s.nextInt();
+      System.out.println("Write how many cups of coffee you will need: ");
+      int cups = s.nextInt();
+      int count = 0;
+      while (water >= 200 && milk >= 50 && coffeeBeans >= 15) {
+        count++;
+        water = water - 200;
+        milk = milk - 50;
+        coffeeBeans = coffeeBeans - 15;
+      }
+      int xtra = count - cups;
+      System.out.println(count == cups ? "Yes, I can make that amount of coffee " : count < cups ? "No, I can make only "+ count +" (s) of coffee":"Yes, I can make that amount of coffee (and even " + xtra +" more than that)");
+    }
 }
